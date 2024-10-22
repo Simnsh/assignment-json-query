@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Song List JSON1</title>
+  </head>
+  <body>
+    <h1>Song List</h1>
+    <pre id="json-output"></pre>
+
+    <script>
+      // JSON object representing the song list
+      const songList = [
+        {
+          title: "Bohemian Rhapsody",
+          artist: "Queen",
+          year: 1975,
+          genres: ["rock", "opera"],
+        },
+        {
+          title: "Thriller",
+          artist: "Michael Jackson",
+          year: 1982,
+          genres: ["pop", "funk"],
+        },
+        {
+          title: "Hotel California",
+          artist: "Eagles",
+          year: 1976,
+          genres: ["rock", "soft rock"],
+        },
+        {
+          title: "Smells Like Teen Spirit",
+          artist: "Nirvana",
+          year: 1991,
+          genres: ["rock", "grunge"],
+        },
+        {
+          title: "Enter Sandman",
+          artist: "Metallica",
+          year: 1991,
+          genres: ["metal"],
+        },
+        {
+          title: "Shape of You",
+          artist: "Ed Sheeran",
+          year: 2017,
+          genres: ["pop", "dancehall"],
+        },
+        {
+          title: "Rolling in the Deep",
+          artist: "Adele",
+          year: 2010,
+          genres: ["pop", "soul"],
+        },
+        {
+          title: "Take Me Home, Country Roads",
+          artist: "John Denver",
+          year: 1971,
+          genres: ["country"],
+        },
+        {
+          title: "What a Wonderful World",
+          artist: "Louis Armstrong",
+          year: 1967,
+          genres: ["jazz"],
+        },
+        {
+          title: "Gangnam Style",
+          artist: "PSY",
+          year: 2012,
+          genres: ["pop", "K-pop"],
+        },
+      ];
+
+      // stringy JSON
+      const jsonString = JSON.stringify(songList, null, 2);
+      document.addEventListener("DOMContentLoaded", function () {
+        const output = document.getElementById("json-output");
+        output.textContent = jsonString;
+      });
+    </script>
+  </body>
+</html>
