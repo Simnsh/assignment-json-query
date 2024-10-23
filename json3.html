@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Song List JSON3</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+      .song {
+        margin-bottom: 20px;
+      }
+      .song h2 {
+        font-size: 20px;
+        color: #2c3e50;
+      }
+      .song p {
+        font-size: 16px;
+        color: #34495e;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Song List</h1>
+
+    <form id="filter-form">
+      <label>Select Genre:</label>
+      <select id="song-genre-select"></select>
+      <button type="button" id="filter-button">Filter</button>
+    </form>
+
+    <div id="filtered-songs"></div>
+
+    <script>
+      let songsData;
+      $.get("songs.json", function (data) {
+        songsData = data;
+
+        let genres = new Set();
+        $.each(songsData, function (_, song) {
+          $.each(song.genres, function (i, genre) {
+            genres.add(genre);
+          });
+        });
+
+        const $genreSelect = $("#song-genre-select");
+        genres.forEach((genre) => {
+          $genreSelect.append(`<option value="${genre}">${genre}</option>`);
+        });
+      });
+
+      $("#filter-button").on("click", function () {
+        const selectedGenre = $("#song-genre-select").val();
+        const filteredSongs = songsData.filter((song) =>
+          song.genres.includes(selectedGenre)
+        );
+
+        let songListHtml = "";
+        $.each(filteredSongs, function (_, song) {
+          songListHtml += `<p>${song.title}</p>`;
+        });
+
+        $("#filtered-songs").html(songListHtml);
+      });
+    </script>
+  </body>
+</html>
