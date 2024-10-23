@@ -25,8 +25,9 @@
     <script>
       $(document).ready(function () {
         $.get("songs.json", function (data) {
+          songsData = data;
           let songListHtml = "";
-          data.forEach(function (song) {
+          songsData.forEach(function (song) {
             songListHtml += `
             <div class="song">
                 <h2>${song.title}</h2>
